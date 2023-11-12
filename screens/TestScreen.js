@@ -7,6 +7,7 @@ import {
   Button,
   Dimensions,
 } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 var width = Dimensions.get("window").width; //full width
@@ -79,9 +80,9 @@ const TestScreen = () => {
   const getOptionStyle = (option) => {
     if (wordData.userAnswer !== null) {
       if (option === wordData.correctTranslation) {
-        return { backgroundColor: "#B2F252" };
+        return { backgroundColor: "#38ef7d" };
       } else if (option === wordData.userAnswer) {
-        return { backgroundColor: "red" };
+        return { backgroundColor: "#f64f59" };
       }
     }
     return null;
@@ -111,10 +112,16 @@ const TestScreen = () => {
           <Text style={styles.scoreText}>Skor: {score}</Text>
         </View>
         <TouchableOpacity style={styles.nxBtn} onPress={getNextQuestion}>
-          <Text style={{ color: "#2980B9", fontSize: 16, fontWeight: "600" }}>
-            Yeni Soru
-          </Text>
-          <MaterialCommunityIcons name="greater-than" size={16} color="#2980B9" />
+          <LinearGradient
+           style={styles.nxBtn}
+            colors={["#56CCF2", "#2F80ED"]}
+          
+            onPress={getNextQuestion}
+            start={{ x: 0, y: 0 }} // Specify the start position (left)
+            end={{ x: 1, y: 0 }}
+          >
+            <Text style={{ color: "white" }}>Yeni Soru</Text>
+          </LinearGradient>
         </TouchableOpacity>
       </View>
     </View>
@@ -142,7 +149,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   nxBtn: {
-    backgroundColor: "#00F4DB",
     width: width * 0.3,
 
     display: "flex",

@@ -1,15 +1,15 @@
 import * as React from "react";
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
-  FlatList,
   TouchableWithoutFeedback,
   Dimensions,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { FlashList } from "@shopify/flash-list";
 import AddWord from "../components/AddWord";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -30,7 +30,7 @@ const WordsScreen = ({ navigation }) => {
     navigation.setOptions({
       headerRight: () => (
         <LinearGradient
-          colors={["#00B4DB", "#0083B0"]}
+          colors={["#56CCF2", "#2F80ED"]}
           start={{ x: 0, y: 0 }} // Specify the start position (left)
           end={{ x: 1, y: 0 }}
           style={styles.addWordContainer}
@@ -45,6 +45,7 @@ const WordsScreen = ({ navigation }) => {
       ),
     });
   }, [navigation]);
+
   const getWordList = async () => {
     try {
       const value = await AsyncStorage.getItem("words");
@@ -111,7 +112,7 @@ const WordsScreen = ({ navigation }) => {
         ];
 
         setWordList(defaultWordList);
-        await AsyncStorage.setItem("words",JSON.stringify(defaultWordList))
+        await AsyncStorage.setItem("words", JSON.stringify(defaultWordList));
       } else {
         setWordList(JSON.parse(value));
       }
@@ -119,20 +120,17 @@ const WordsScreen = ({ navigation }) => {
       console.error(error);
     }
   };
-  
 
-  const renderItem = React.useCallback(({ item, index }) => (
-    <Word item={item} index={index} wordList={wordList} setWordList={setWordList} />
-  ), [setWordList]);
   useEffect(() => {
     getWordList();
   }, []);
+
   return (
     <View style={styles.screen}>
       <TouchableWithoutFeedback onPress={() => setToggle(false)}>
         <View style={styles.container}>
           <LinearGradient
-            colors={["#00B4DB", "#0083B0"]}
+            colors={["#56CCF2", "#2F80ED"]}
             start={{ x: 0, y: 0 }} // Specify the start position (left)
             end={{ x: 1, y: 0 }} // Specify the end position (right)
             style={styles.linearGradient}
@@ -158,19 +156,31 @@ const WordsScreen = ({ navigation }) => {
               </TouchableOpacity>
             </View>
           </LinearGradient>
-
           {toggle && (
             <View style={styles.toggle} onPress={handleAddWord}>
-              <AddWord wordList={wordList} setWordList={setWordList} />
+              <AddWord
+                wordList={wordList}
+                setToggle={setToggle}
+                setWordList={setWordList}
+              />
             </View>
           )}
 
-          <FlatList
-            data={wordList}
-            style={styles.flatList}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={renderItem}
-          />
+          <View style={styles.flatList}>
+            <FlashList
+              data={wordList}
+              keyExtractor={(item, index) => index.toString()} // Assuming index can be used as a key
+              renderItem={({ item, index }) => (
+                <Word
+                  item={item}
+                  index={index}
+                  wordList={wordList}
+                  setWordList={setWordList}
+                />
+              )}
+              estimatedItemSize={500}
+            />
+          </View>
         </View>
       </TouchableWithoutFeedback>
     </View>
@@ -256,13 +266,15 @@ const styles = StyleSheet.create({
   toggle: {
     position: "absolute",
     top: "50%",
-    zIndex: 99,
+
+    zIndex: 9999,
   },
 
   colorWhite: {
     color: "white",
   },
   flatList: {
+   flex:1,
     width: (width * 8) / 10,
     zIndex: 98,
   },

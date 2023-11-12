@@ -6,7 +6,7 @@ import logo from "../assets/bagisoftnobacklogo.png";
 function HomeScreen({ navigation }) {
   return (
     <LinearGradient
-      colors={["#00B4DB", "#0083B0"]}
+      colors={["#56CCF2", "#2F80ED"]}
       style={styles.linearGradient}
     >
       <SafeAreaView style={styles.container}>

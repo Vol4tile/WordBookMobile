@@ -5,9 +5,11 @@ import { MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const Word = ({ item, index, wordList, setWordList }) => {
   const removeWord = async (index) => {
-    console.log(index);
+
     const updatedWordList = [...wordList];
+ 
     updatedWordList.splice(index, 1);
+ 
     try {
       await AsyncStorage.setItem("words", JSON.stringify(updatedWordList));
       setWordList(updatedWordList);
@@ -34,9 +36,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     padding: 10,
-    backgroundColor: "#ADD8E6",
+    backgroundColor: "#f0f0f0",
     marginTop: 10,
-    borderRadius: 10,
+    borderRadius: 20,
   },
   word: {
     fontFamily: "sans-serif-medium",
@@ -47,12 +49,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   tr: {
-    color: "#00008B",
-    fontSize:16
+    color: "#c471ed",
+    fontSize: 16,
   },
   en: {
-    color: "#3E44ED",
-    fontSize:16
+    color: "#12c2e9",
+    fontSize: 16,
   },
 });
 export default memo(Word);
