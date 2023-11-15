@@ -5,9 +5,8 @@ React-Native
 npm run start
 ```
 
-![1](https://github.com/Vol4tile/WordBookMobile/assets/104697209/be5a98bf-85e7-45b5-803a-298b0255f221)
+![1](https://github.com/Vol4tile/WordBookMobile/assets/104697209/e6defaea-0a35-47f2-907b-459969bd08d1)
+![2](https://github.com/Vol4tile/WordBookMobile/assets/104697209/729b1172-4ba2-4dcf-84d2-781d48711a88)
+![3](https://github.com/Vol4tile/WordBookMobile/assets/104697209/a57763bb-4b88-4fd1-87a4-472e7e67431d)
 
-![2](https://github.com/Vol4tile/WordBookMobile/assets/104697209/34761e22-320b-44f7-905e-84134631bee7)
-
-![3](https://github.com/Vol4tile/WordBookMobile/assets/104697209/0793a9ba-3237-4a55-ae77-99c2bf4f12ff)
 
