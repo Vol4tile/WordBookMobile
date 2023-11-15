@@ -1,6 +1,9 @@
 # WordBookMobile
 React-Native
 
+```bash
+npm run start
+```
 
 ![1](https://github.com/Vol4tile/WordBookMobile/assets/104697209/be5a98bf-85e7-45b5-803a-298b0255f221)
 
